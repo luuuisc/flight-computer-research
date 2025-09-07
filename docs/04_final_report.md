@@ -1,12 +1,3 @@
----
-title: "Reporte técnico — Computadora de Vuelo SRAD (perfil 500–1000 m AGL)"
-author: "Propulsion UNAM"
-date: "2025-09-07"
-toc: true
-toc-depth: 3
-numbersections: true
-geometry: margin=2.5cm
----
 # Reporte técnico — Computadora de Vuelo
 
 - **Autor:** Pérez Castro Luis Ángel

@@ -51,7 +51,7 @@ Repositorio técnico del equipo **Propulsion UNAM** para el diseño y documentac
 3. **Árbol de decisiones de sensorización** → `docs/03_arbol_decisiones_sensores.md`  
    Selección de sensores, rangos y tasas, con diagrama Mermaid y justificación.
 4. **Glosario** → `docs/00_glosario.md`  
-   Términos clave (COTS, SRAD, GNSS, jamming/spoofing, etc.).
+   Términos clave (COTS, SRAD).
 5. **Referencias** → `ref/REFERENCIAS.md`  
    Bibliografía y enlaces a manuales/datasheets utilizados.
 ---

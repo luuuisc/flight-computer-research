@@ -111,78 +111,8 @@
 
 ## 5) Diagrama de decisión (Mermaid)
 
-```mermaid
-flowchart TD
-  A([Perfil 500-1000 m AGL])
-  B{Pico de aceleracion <= 16 g?}
-  A --> B
+![Diagrama de decisión](../docs/img/diagrama.png)
 
-  C[IMU 6 ejes, rechazo a vibracion (BMI088)]
-  D[IMU 6 ejes + acelerometro high-g (ADXL377/375)]
-  B -- "Si" --> C
-  B -- "No o incierto" --> D
-
-  E{Se requiere actitud / tilt / roll?}
-  C --> E
-  D --> E
-  F[IMU 9 ejes con DMP (ICM-20948) + fusion]
-  G[Barometrico + IMU 6 ejes suficiente]
-  E -- "Si" --> F
-  E -- "No" --> G
-
-  H{Resolucion altimetrica objetivo}
-  F --> H
-  G --> H
-  I[BMP388: submetrica (~0.5 m)]
-  J[MS5611: muy alta (~0.1 m)]
-  H -- "Submetrica" --> I
-  H -- "Muy alta" --> J
-
-  K{Solo recuperacion post-vuelo?}
-  I --> K
-  J --> K
-  L[GNSS 1-10 Hz (NEO-M8/NEO-M9N/L76)]
-  M[Altimetro con ecosistema de radio (Blue Raven)]
-  K -- "Si" --> L
-  K -- "No, telemetria tiempo real" --> M
-
-  N{Entorno con vibracion alta?}
-  L --> N
-  M --> N
-  O[Montaje con aislamiento mecanico y priorizar BMI088]
-  P[Montaje estandar]
-  N -- "Si" --> O
-  N -- "No" --> P
-
-  Q[[Conjunto recomendado]]
-  O --> Q
-  P --> Q
-  R[Baro (BMP388 o MS5611)]
-  S[IMU 6 ejes (BMI088)]
-  T[Opcional: IMU 9 ejes (ICM-20948)]
-  U[Opcional: High-g (ADXL377/375)]
-  V[GNSS 5-10 Hz (NEO-M8/M9N/L76)]
-  W[Monitoreo de bateria + continuidad piro]
-  Q --> R
-  Q --> S
-  Q --> T
-  Q --> U
-  Q --> V
-  Q --> W
-
-  %% --- Estilos ---
-  classDef inicio fill:#0f766e,stroke:#0d524c,stroke-width:2px,color:#ffffff;
-  classDef decision fill:#f59e0b,stroke:#b45309,stroke-width:2px,color:#111111;
-  classDef proceso fill:#2563eb,stroke:#1e40af,stroke-width:2px,color:#ffffff;
-  classDef dato fill:#9333ea,stroke:#6b21a8,stroke-width:2px,color:#ffffff;
-  classDef salida fill:#16a34a,stroke:#166534,stroke-width:2px,color:#ffffff;
-
-  class A inicio;
-  class B,E,H,K,N decision;
-  class C,D,F,G,M,O,P proceso;
-  class I,J,L,R,S,T,U,V,W dato;
-  class Q salida;
-```
 ---
 
 ## 6) Conclusión

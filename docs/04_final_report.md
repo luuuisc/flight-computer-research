@@ -60,32 +60,7 @@ Adicionalmente:
 
 ## 4. Arquitectura a alto nivel
 
-```mermaid
-flowchart LR
-  subgraph Sensado
-    B[BMP388 o MS5611<br/>Barométrico 20–50 Hz]
-    I6[BMI088<br/>IMU 6 ejes 200–1000 Hz]
-    I9[ICM-20948<br/>IMU 9 ejes (opc.)]
-    HG[ADXL377/375<br/>High-g (opc.)]
-    G[GNSS NEO-M8/M9N o L76<br/>5–10 Hz]
-  end
-  subgraph Cómputo
-    MCU[MCU ARM<br/>SPI/I2C/UART, timers]
-    FLASH[Flash SPI<br/>Log de vuelo]
-  end
-  subgraph Actuación
-    PYRO[Canales piro<br/>drogue/main]
-  end
-  subgraph Energía
-    BAT[Batería LiPo]
-    REG[Regulación 5V/3V3]
-    MON[Monitoreo de voltaje]
-  end
-
-  B-->MCU; I6-->MCU; I9-->MCU; HG-->MCU; G-->MCU
-  MCU-->FLASH; MCU-->PYRO
-  BAT-->REG-->MCU; REG-->Sensado; MCU-->MON
-```
+![Diagrama](../docs/img/diagrama2.png)
 
 > El **árbol de decisiones** detallado se incluye en `03_arbol_decisiones_sensores.md`. Aquí se parte de sus conclusiones para justificar la selección.
 

@@ -148,7 +148,6 @@ Adicionalmente:
 - **Justificación.** Mejora de recuperación; M9N admite 4 constelaciones y detección básica de **jamming/spoofing**.
 - **Proveedor/alternativa.** Mouser/Digi-Key MX; módulos L76/L76-LB como opción económica.
 - **Datasheets/Docs.**
-
     * NEO-M8: [Datasheet NEO-M8](https://content.u-blox.com/sites/default/files/NEO-M8-FW3_DataSheet_UBX-15031086.pdf)
     * NEO-M9N: [Datasheet NEO-M9N](https://content.u-blox.com/sites/default/files/NEO-M9N-00B_DataSheet_UBX-19014285.pdf)
     * Quectel L76 Hardware Design: [Datasheet Quectel L76](https://forums.quectel.com/uploads/short-url/jZHd2ObxH4FndArQyE3pqu7ZZ7e.pdf)

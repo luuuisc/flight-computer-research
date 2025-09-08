@@ -98,8 +98,8 @@ Referencia: [Guía de cohetes – NASA](https://www1.grc.nasa.gov/beginners-guid
 - **Bosch BMP388.** Barómetro digital con precisión submétrica (~0.5 m típica), buen TCO; SPI/I²C. 
   - **Uso:** alternativa moderna y de bajo consumo. [Datasheet (Bosch)](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp388-ds001.pdf).
   
-  > [!IMPORTANT]
-  > TCO significa Temperature Coefficient of Offset (coeficiente térmico de offset). Un TCO bajo reduce la deriva térmica de la altitud. El BMP388 está pensado para medición de altura estable en un rango amplio de temperatura
+> [!IMPORTANT]
+> TCO significa Temperature Coefficient of Offset (coeficiente térmico de offset). Un TCO bajo reduce la deriva térmica de la altitud. El BMP388 está pensado para medición de altura estable en un rango amplio de temperatura
 
 ### 5.2 IMU / inerciales
 - **Bosch BMI088 (6-ejes).** IMU con **alta inmunidad a vibración**; SPI/I²C; VDDIO 1.2–3.6 V. 

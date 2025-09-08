@@ -90,38 +90,18 @@ Referencia: [Guía de cohetes – NASA](https://www1.grc.nasa.gov/beginners-guid
 
 ---
 
-## 5) Ecuaciones
+## 5) Descripción técnica de componentes
 
-**Sumatoria de fuerzas (eje de vuelo)**  
-$$
-T - D - W = m\,a
-$$
-
-**Arrastre aerodinámico**  
-$$
-D = \tfrac{1}{2}\,\rho\,V^2\,C_D\,A
-$$
-
-**Presión dinámica**  
-$$
-\bar{q} = \tfrac{1}{2}\,\rho\,V^2
-$$
-
-Referencia de fuerzas y aerodinámica: [Guías NASA BGA](https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/learn-about-aerodynamics/).
-
----
-
-## 6) Descripción técnica de componentes
-
-### 6.1 Sensores barométricos (altitud)
+### 5.1 Sensores barométricos (altitud)
 - **TE MS5611-01BA03.** Altímetro de **alta resolución (~10 cm)**; ADC 24-bit; SPI/I²C; bajo consumo. 
   - **Uso:** apogeo y ventana del principal. [Datasheet (TE)](https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FMS5611-01BA03%7FB3%7Fpdf%7FEnglish%7FENG_DS_MS5611-01BA03_B3.pdf%7FCAT-BLPS0036).  
 - **Bosch BMP388.** Barómetro digital con precisión submétrica (~0.5 m típica), buen TCO; SPI/I²C. 
   - **Uso:** alternativa moderna y de bajo consumo. [Datasheet (Bosch)](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp388-ds001.pdf).
+  
   > [!IMPORTANT]
   > TCO significa Temperature Coefficient of Offset (coeficiente térmico de offset). Un TCO bajo reduce la deriva térmica de la altitud. El BMP388 está pensado para medición de altura estable en un rango amplio de temperatura
 
-### 6.2 IMU / inerciales
+### 5.2 IMU / inerciales
 - **Bosch BMI088 (6-ejes).** IMU con **alta inmunidad a vibración**; SPI/I²C; VDDIO 1.2–3.6 V. 
   - **Uso:** aceleración/velocidad angular robustas; detección de burnout.
     - [Datasheet (Bosch)](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf).  
@@ -129,7 +109,7 @@ Referencia de fuerzas y aerodinámica: [Guías NASA BGA](https://www1.grc.nasa.g
   - **Uso:** estimación de actitud/rumbo con fusión 9-ejes. 
     - [Datasheet (TDK)](https://invensense.tdk.com/wp-content/uploads/2016/06/DS-000189-ICM-20948-v1.3.pdf).
 
-### 6.3 GNSS (recuperación y validación de trayectoria)
+### 5.3 GNSS (recuperación y validación de trayectoria)
 - **u-blox NEO-M9N.** Recepción concurrente de **4 GNSS**; mitigación de *jamming/spoofing*.
 > [!NOTE]
 > **Jamming / Spoofing**
@@ -150,7 +130,7 @@ Referencia de fuerzas y aerodinámica: [Guías NASA BGA](https://www1.grc.nasa.g
     - [Hardware Design (PDF)](https://forums.quectel.com/uploads/short-url/jZHd2ObxH4FndArQyE3pqu7ZZ7e.pdf)
     - [Protocol Spec (PDF)](https://www.quectel.com/content/uploads/2024/04/Quectel_L76-LBL26-LBLC86L_GNSS_Protocol_Specification_V1.1.pdf).
 
-### 6.4 Altímetros / computadoras comerciales
+### 5.4 Altímetros / computadoras comerciales
 - **PerfectFlite StratoLoggerCF.** Registra **20 Hz** (altitud, temperatura, voltaje) y controla eyección (drogue/main). 
   - **Uso:** referencia COTS clásica; útil para ventanas/inhibiciones
     - [Manual (PDF)](http://www.perfectflite.com/SLCF.html)  
@@ -163,16 +143,16 @@ Referencia de fuerzas y aerodinámica: [Guías NASA BGA](https://www1.grc.nasa.g
     - [Manual (PDF)](https://www.apogeerockets.com/downloads/PDFs/09170-blue_raven_users_manual_september_15.pdf)
     - [Página producto](https://www.featherweightaltimeters.com/blue-raven-altimeter.html).
 
-### 6.5 Canales pirotécnicos y cargas de eyección
+### 5.5 Canales pirotécnicos y cargas de eyección
 - **Definición.** Salidas de la computadora/altímetro que energizan e-matches para detonar **cargas de eyección** (pólvora negra) y liberar paracaídas (apogeo/principal).  
 - **Dimensionamiento.** La masa de pólvora se calcula a partir del **volumen libre** y la **presión objetivo**, y se valida en **pruebas en tierra** para asegurar expulsión fiable sin dañar estructura.
 
-### 6.6 Alimentación
+### 5.6 Alimentación
 - **Baterías (LiPo/Li-ion/9 V).** Selección por **rango de tensión** del sistema y **corriente de pico** requerida por canales piro; verificar guías y manuales del altímetro/computadora.
 
 ---
 
-## 7) Implicaciones para la computadora de vuelo
+## 6) Implicaciones para la computadora de vuelo
 
 - **Sensado mínimo (500–1000 m).** Barométrico + IMU 6-ejes, monitoreo de batería, continuidad piro; **deseable** GNSS para recuperación.  
 - **Registro.** ≥ **20 Hz** en baro y ≥ **200 Hz** en IMU para eventos; almacenamiento no volátil y descarga.

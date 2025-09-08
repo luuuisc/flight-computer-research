@@ -169,7 +169,7 @@ Equipo **investigado y desarrollado por estudiantes** (diseño y, en general, fa
 
 ---
 
-### 6.7 Altímetros / Computadoras COTS (referencia y redundancia)
+### 6.7 Altímetros / Computadoras COTS
 
 > **Objetivo:** referenciar capacidades reales de equipos comerciales (tasas, lógica piro, registro), y evaluar su **disponibilidad** para adquirir desde México.
 

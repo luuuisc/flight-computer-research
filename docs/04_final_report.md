@@ -164,12 +164,39 @@ Equipo **investigado y desarrollado por estudiantes** (diseño y, en general, fa
 - **Proveedor/alternativa.** Mouser/Digi-Key MX; módulos L76/L76-LB como opción económica.
 - **Datasheets/Docs.**
     * NEO-M8: [Datasheet NEO-M8](https://content.u-blox.com/sites/default/files/NEO-M8-FW3_DataSheet_UBX-15031086.pdf)
-    * NEO-M9N: [Datasheet NEO-M9N]()*
+    * NEO-M9N: [Datasheet NEO-M9N](https://content.u-blox.com/sites/default/files/NEO-M9N-00B_DataSheet_UBX-19014285.pdf)
 
 
 ---
 
-### 6.7 Altímetros / Computadoras COTS
+### 6.7 Microcontrolador — **STMicroelectronics STM32F405RG** (Cortex-M4F, 168 MHz, LQFP-64)
+
+- **Descripción / uso.**  
+  Microcontrolador de 32 bits con unidad de punto flotante (FPU). Actúa como **cerebro** de la computadora de vuelo: adquisición de sensores (barométrico, IMU, GNSS), lógica de eventos (despegue, agotamiento, apogeo y principal), control de **canales pirotécnicos**, registro de datos y comunicaciones. Opera en **3.3 V** y dispone de interfaces abundantes para integrar todos los módulos seleccionados.
+
+- **Rango de operación.**  
+  Tensión **1.8–3.6 V** (típico 3.3 V); frecuencia hasta **168 MHz**; temperatura **−40 a +85 °C** (grado industrial). Memoria interna: **1 MB Flash** y **192 KB RAM** (verificar variante exacta en datasheet).
+
+- **Requerimientos HW.**  
+  Desacoplos por pin y plano de tierra sólido; pin **BOOT0** con pull-down; **NRST** con pull-up/RC. **Reloj externo** opcional: cristal **HSE ~8 MHz** y **LSE 32.768 kHz** (para RTC). Programación/depuración por **SWD** (conector 2×5, 1.27 mm). Reservar **SPI** dedicados para IMU/barómetro, **UART** para GNSS y **ADC** para batería/continuidad piro. GPIO con temporizadores para disparo piro con MOSFET.
+
+- **Programación (si aplica).**  
+  Entornos recomendados en macOS: **STM32CubeIDE + STM32CubeProgrammer** (guiado) o **VS Code + PlatformIO** (modular). Programación por **ST-LINK** vía **SWD**; también es posible usar el **bootloader de sistema** (UART/USB DFU, según AN2606). Sin código en esta fase.
+
+- **Justificación.**  
+  Combina **rendimiento y robustez** con una **FPU** útil para filtrado/fusión, **temporizadores** para muestreos determinísticos, **SPI/I²C/UART** suficientes para todos los sensores y **ADC** para telemetría eléctrica. El encapsulado **LQFP-64** facilita ruteo y manufactura. Ecosistema maduro, amplia documentación y baja fricción para pruebas y validación.
+
+- **Proveedor / alternativa.**  
+  Distribución en **Mouser** / **Digi-Key** (México). Alternativas según preferencia de ecosistema: **Microchip ATSAMD51J19** (Cortex-M4F, TQFP-64, integración sencilla con Arduino/Mbed) o **Raspberry Pi RP2040** (133 MHz, 2 núcleos; económico y flexible, pero **sin FPU** y requiere flash externa).
+
+- **Datasheet.**  
+  **STM32F405/407**: [Datasheet](https://www.st.com/resource/en/datasheet/stm32f405rg.pdf)  
+  **Referencia** (RM0090): [Manual de Referencia](https://www.st.com/resource/en/reference_manual/dm00031020.pdf)  
+  **Bootloader de sistema** (AN2606): [Application note](https://www.st.com/resource/en/application_note/dm00081379.pdf)
+
+---
+
+### 6.8 Computadoras COTS
 
 > **Objetivo:** referenciar capacidades reales de equipos comerciales (tasas, lógica piro, registro), y evaluar su **disponibilidad** para adquirir desde México.
 
@@ -181,17 +208,29 @@ Equipo **investigado y desarrollado por estudiantes** (diseño y, en general, fa
     - [Manual PDF](http://www.perfectflite.com/Downloads/StratoLoggerCF%20manual.pdf)
 * **Notas:** ejemplo de ventanas e inhibiciones; referencia para detección de apogeo barométrico.
 
-#### Featherweight **Raven** (clásico)
+### 6.8.1 Computadora de Vuelo Comercial — **Featherweight Blue Raven**
 
-* **Uso:** inercial hasta **200–400 Hz**, baro **20 Hz**; **4 salidas piro** configurables.
-* **Referencias:** [Manual PDF](https://www.featherweightaltimeters.com/uploads/1/0/9/5/109510427/raven_users_manual_2014may20.pdf)
-* **Notas:** muy flexible; útil como banco de comparación.
+* **Descripción / uso.**
+  Computadora de vuelo integrada para cohetes experimentales: controla recuperación con **cuatro salidas pirotécnicas** independientes, registra datos de vuelo y se configura desde una **app móvil** (iOS/Android) por Bluetooth. Registra datos a **50 Hz** y **500 Hz** (conjunto de alta tasa) y ofrece lógica robusta de detección de apogeo y respaldo.
+  
+* **Rango de operación.**
+  Alimentación típica **3.7–9 V** (1S LiPo y 9 V son aceptados; ver notas de corriente de salida), temperatura y rangos recomendados en el manual. Salidas piro con limitación de corriente gestionada por el equipo.
+  
+* **Requerimientos HW.**
+  Montaje rígido en bahía de aviónica ventilada (puertos barométricos) y conexión de salidas piro en **open-drain** (el equipo conmuta a masa; el otro extremo del ignitor va al positivo de batería). Recomendado evitar luz directa en el barómetro.
+  
+* **Programación (si aplica).**
+  Configuración y actualización **OTA** desde la **app Featherweight UI** (App Store / Google Play). Opcionalmente, interfaz **USB** tipo serie para supervisión y comandos.
+  
+* **Justificación.**
+  Integra sensores y lógica de despliegue de alta confiabilidad con **cuatro canales piro**, registro **50/500 Hz**, app de configuración y flujo de trabajo probado en la comunidad. Es ideal como **referencia y/o redundancia** frente a la computadora SRAD, y para validar tasas y ventanas que usaremos en nuestro propio diseño.
+  
+* **Compra desde México.**
+  Disponible en **Apogee Rockets** (EE. UU.). Verifica opciones y costos de envío internacional al finalizar compra; Apogee lista el producto con precio público y procesa pedidos internacionales. *(Confirma aranceles/aduana según tu dirección.)*
+  
+* **Datasheet / Manual.**
+  [Manual Blue Raven (PDF)](https://www.apogeerockets.com/downloads/PDFs/09170-blue_raven_users_manual_september_15.pdf) — especificaciones operativas, canales piro, registro 50/500 Hz y app.
 
-#### Featherweight **Blue Raven**
-
-* **Uso:** inercial **500 Hz**, registro **50 Hz**, app de configuración/descarga (BLE).
-* **Referencias:** [Manual PDF](https://www.apogeerockets.com/downloads/PDFs/09170-blue_raven_users_manual_september_15.pdf)
-* **Notas:** ecosistema moderno; ejemplo de telemetría/app.
 
 > **Disponibilidad en MX:** confirmar envío y tiempos con los fabricantes/distribuidores antes de la compra (costos de importación/aduana pueden aplicar).
 

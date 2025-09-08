@@ -89,7 +89,7 @@
 
 ---
 
-## 4) Candidatos (selección y compra con datasheets)
+## 4) Candidatos
 
 - **Barométricos**  
     - **Bosch BMP388** — 24-bit, SPI/I²C. [Datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp388-ds001.pdf)  

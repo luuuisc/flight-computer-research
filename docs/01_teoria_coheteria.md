@@ -131,10 +131,10 @@ Referencia de fuerzas y aerodinámica: [Guías NASA BGA](https://www1.grc.nasa.g
 
 ### 6.3 GNSS (recuperación y validación de trayectoria)
 - **u-blox NEO-M9N.** Recepción concurrente de **4 GNSS**; mitigación de *jamming/spoofing*.
-  > [!NOTE]
-  > **Jamming / Spoofing**
-  > - **Jamming:** interferencia RF (intencional o accidental) en la banda GNSS que eleva el ruido y bloquea o degrada la recepción.
-  > - **Spoofing:** transmisión de señales GNSS falsas pero coherentes que engañan al receptor y desvían su posición/tiempo.
+> [!NOTE]
+> **Jamming / Spoofing**
+> - **Jamming:** interferencia RF (intencional o accidental) en la banda GNSS que eleva el ruido y bloquea o degrada la recepción.
+> - **Spoofing:** transmisión de señales GNSS falsas pero coherentes que engañan al receptor y desvían su posición/tiempo.
 
   - **Uso:** localización y datos de trayectoria. 
     - [Datasheet](https://content.u-blox.com/sites/default/files/NEO-M9N-00B_DataSheet_UBX-19014285.pdf)
